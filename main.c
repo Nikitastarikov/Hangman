@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #define IDX_END 1000000
 #define STD_SPC 29
-#define CLRS "CLS" //for Windows
-//#define CLRS "clear" //for Linux
+//#define CLRS "CLS" //for Windows
+#define CLRS "clear" //for Linux
 
 int strschk(char word[], int k_index[],char ch);
 void space_print(int n);
