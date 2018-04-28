@@ -11,6 +11,10 @@ int strschk(char word[], int k_index[],char ch);
 void space_print(int n);
 int space_suff(char string[]);
 void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed);
+char menu();
+char topic_select();
+char stats();
+char difficult_select();
 
 int main()
 {
@@ -25,6 +29,12 @@ int main()
 	int tryed = 0;
 	pole_print(man,eng_ch,word,score,tryed);
 	getchar();
+	menu();
+	sleep(2);
+	topic_select();
+	stats();
+	sleep(2);
+	difficult_select();
 	return 0;
 }
 
@@ -87,4 +97,55 @@ void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int trye
 	}
 	printf("|\n\n\n");
 	printf("|||Enter the char(ENG): ");
+}
+
+char menu(){
+	char ch = 0;
+	system(CLRS);
+	printf("\n\t\t\tMENU\n\n\n");
+	printf ("1.Start game\n");
+	printf ("2.Stats\n\n");
+	printf ("3.Quit\n\n\n");
+	printf ("|||Enter the num: ");
+	scanf("%c",&ch);
+	return ch;
+}
+
+char topic_select(){
+	char ch = 0;
+	system(CLRS);
+	printf("\n\t\t\tSELECT THE TOPIC\n\n\n");
+	printf ("1.Animals\n");
+	printf ("2.Sports\n");
+	printf ("3.Professions\n");
+	printf ("4.Fruits\n\n");
+//	printf ("5.\n\n");
+	printf ("6.Back \n\n\n");
+	printf ("|||Enter the num: ");
+	scanf("%c",&ch);
+	return ch;
+}
+
+char stats(int best_score){
+	char ch = 0;
+	system(CLRS);
+	printf("\n\t\t\tSTATS\n\n\n");
+	printf("Best score: %d\n\n",best_score);
+	printf ("1.Back\n\n\n");
+	printf ("|||Enter the num: ");
+	scanf("%c",&ch);
+	return ch;
+}
+
+char difficult_select(){
+	char ch = 0;
+	system(CLRS);
+	printf("\n\t\t\tSELECT THE DIFFICULT\n\n\n");
+	printf ("1.Easy\n");
+	printf ("2.Midle\n");
+	printf ("3.Hard\n\n");
+	printf ("4.Back\n\n\n");
+	printf ("|||Enter the num: ");
+	scanf("%c",&ch);
+	return ch;
 }
