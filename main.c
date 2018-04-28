@@ -2,12 +2,13 @@
 #include <string.h>
 #include <locale.h>
 #include <stdlib.h>
+#include <unistd.h>
 #define IDX_END 1000000
 #define STD_SPC 29
 //#define CLRS "CLS" //for Windows
 #define CLRS "clear" //for Linux
 
-int strschk(char word[], int k_index[],char ch);
+int strschk(char word[], int k_index[],char ch,int* num);
 void space_print(int n);
 int space_suff(char string[]);
 void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed);
@@ -41,9 +42,9 @@ int main()
 	unsigned int score = 0; // Ochki
 	char words[10][50] = {{0}};
 	int difficult = 3, num = 0;
-	char readed_word[50] = {0};
+//	char readed_word[50] = {0};
 	char used_simbols[26] = {0};
-	int game_start = 0, game_exit = 0, game_topic = 0,game_lose = 0;
+	int game_start = 0,game_lose = 0;
 	int k_index[100] = {0}; // Massive dlya indexov naidenih bukov
 	char input[3] = {0}, *ch = 0; // Vvodimaja bukva
 	char menu_ch[3] = {0};
@@ -61,8 +62,8 @@ int main()
 		difficult = 0;
 		num = 0;
 		game_start = 0;
-		game_exit = 0;
-		game_topic = 0;
+//		game_exit = 0;
+//		game_topic = 0;
 		game_lose = 0;
 		for (i = 0; i < 10; ++i){
 			for (j = 0; j < 50; ++j){
@@ -228,6 +229,7 @@ int main()
 				pribavlaem ochki esli bukva nashlas'*/
 			//	fgets (input,2,stdin);
 				scanf("%s",input);
+				system(CLRS);
 				strschk(word,k_index,*ch,&num);
 				if (used_simbol_check(used_simbols,*ch)){
 					if ((*ch >= 'a' && *ch <= 'z') || (*ch >= 'A' && *ch <= 'Z') ){
@@ -292,7 +294,7 @@ int main()
 	return 0;
 }
 
-int strschk(char word[], int k_index[],char ch){
+int strschk(char word[], int k_index[],char ch,int* num){
 	char chupper = '\0';
 	if (ch >= 'a' && ch <= 'z'){
 		chupper = ch - ('a' - 'A');
@@ -300,13 +302,13 @@ int strschk(char word[], int k_index[],char ch){
 		chupper = ch + ('a' - 'A');
 	}
 	int i = 0,j = 0;
-	k_index[0] = strlen(word);
 	for (j = 1,i = 0; word[i] != '\0'; ++i){
 		if (word[i] == ch || word[i] == chupper){
 			k_index[j] = i;
 			++j;
 		}
 	}
+	*num = j - 1;
 	k_index[j] = IDX_END;
 	return 0;
 }
@@ -326,7 +328,7 @@ void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int trye
 	int i = 0;
 //	system("clear");
 	system(CLRS);
-	printf("score: %-6d",score); // 13 chars
+	printf("\nscore: %-6d",score); // 13 chars
 	space_print(STD_SPC);
 	printf("trying: %-2d\n\n\n",tryed); // 10 chars
 	space_print(STD_SPC-3);
