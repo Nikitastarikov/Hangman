@@ -4,6 +4,8 @@
 #define IDX_END 1000000
 
 int strschk(char word[], int k_index[],char ch);
+void space_print(int n);
+int space_suff(char string[]);
 
 int main()
 {
@@ -49,4 +51,15 @@ int strschk(char word[], int k_index[],char ch){
 	}
 	k_index[j] = IDX_END;
 	return 0;
+}
+
+void space_print(int n){
+	int i = 0;
+	for (i = 0; i < n; ++i){
+		printf (" ");
+	}
+}
+
+int space_suff(char string[]){
+	return (23 - strlen(string))/2;
 }
