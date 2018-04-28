@@ -15,6 +15,7 @@ char menu();
 char topic_select();
 char stats();
 char difficult_select();
+int used_simbol_check(char used_simbols[], char ch);
 
 int main()
 {
@@ -148,4 +149,21 @@ char difficult_select(){
 	printf ("|||Enter the num: ");
 	scanf("%c",&ch);
 	return ch;
+}
+
+int used_simbol_check(char used_simbols[], char ch){
+	int i = 0;
+	char chupper = 0;
+	if (ch >= 'a' && ch <= 'z'){
+		chupper -= 'a' - 'A';
+	}
+	if (ch >= 'A' && ch <= 'Z'){
+		chupper += 'a' - 'A';
+	}
+	for (i = 0; i < 26; ++i){
+		if (used_simbols[i] == ch){
+			return 0;
+		}
+	}
+	return 1;
 }
