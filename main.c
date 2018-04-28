@@ -1,36 +1,30 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+#include <stdlib.h>
 #define IDX_END 1000000
+#define STD_SPC 29
+#define CLRS "CLS" //for Windows
+//#define CLRS "clear" //for Linux
 
 int strschk(char word[], int k_index[],char ch);
 void space_print(int n);
 int space_suff(char string[]);
+void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed);
 
 int main()
 {
-	char string[] = "Chocolate";
-	int k_index[100] = {0}, i = 0,j = 0;
-	char ch = 0;
-	scanf ("%c", &ch);
-	strschk(string,k_index,ch);
-	printf ("\n%s\t",string);
-	for (i = 1; k_index[i] != IDX_END ; ++i){
-		printf ("%i ",k_index[i]);
+	int i = 0;
+	char man[6] = {' ',' ',' ',' ',' ',' '};
+	char eng_ch[26] = {0};
+	for (i = 0; i < 26; ++i){
+		eng_ch[i] = 'A' + i;
 	}
-	printf ("\n");
-	char campf[strlen(string) + 1];
-	for (i = 0; i <strlen(string); ++i){
-		campf[i] = '_';
-	}
-	campf[i] = '\0';
-	for (i = 0,j = 1; i < strlen(string) && k_index[j] != IDX_END; ++i){
-		if (i == k_index[j]){
-			campf[i] = ch;
-			++j;
-		}
-	}
-	printf ("%s\n",campf);
+	char word[50] = "COFFE";
+	unsigned int score = 0;
+	int tryed = 0;
+	pole_print(man,eng_ch,word,score,tryed);
+	getchar();
 	return 0;
 }
 
@@ -62,4 +56,35 @@ void space_print(int n){
 
 int space_suff(char string[]){
 	return (23 - strlen(string))/2;
+}
+
+void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed){
+	int i = 0;
+//	system("clear");
+	system(CLRS);
+	printf("score: %-6d",score); // 13 chars
+	space_print(STD_SPC);
+	printf("trying: %-2d\n\n\n",tryed); // 10 chars
+	space_print(STD_SPC-3);
+	printf("_____\n"); // 5 chars
+	space_print(STD_SPC-3);
+	printf("|   |\n");
+	space_print(STD_SPC-3);
+	printf("|   %c\n",man[0]);
+	space_print(STD_SPC-3);
+	printf("|  %c%c%c\n",man[2],man[1],man[3]);
+//	space_print(20);
+//	printf("|   |\n");
+	space_print(STD_SPC-3);
+	printf("|  %c %c\n",man[4],man[5]);
+	space_print(STD_SPC - 4);
+	printf("_|_  \n\n");
+	space_print(STD_SPC - 12 + space_suff(word));
+	printf ("%-23s\n",word);
+	printf ("-----------------------------------------------------\n");
+	for (i = 0; i < 26; ++i){
+		printf ("|%c",eng_ch[i]);
+	}
+	printf("|\n\n\n");
+	printf("|||Enter the char(ENG): ");
 }
