@@ -2,20 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "headers/interface.h"
+#include "headers/string_funcs.h"
 #define IDX_END 1000000
 #define STD_SPC 29
 //#define CLRS "CLS" //for Windows
 #define CLRS "clear" //for Linux
-
-int strschk(char word[], int k_index[],char ch,int* num);
-void space_print(int n);
-int space_suff(char string[]);
-void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed);
-char menu();
-char topic_select();
-char stats();
-char difficult_select();
-int used_simbol_check(char used_simbols[], char ch);
 
 int main()
 {
@@ -30,9 +22,10 @@ int main()
 //		fprintf(scr,"%d",0);
 		best_score = 0;
 		fclose(scr);
+	} else {
+		fscanf (scr,"%d",&best_score);
+		fclose(scr);
 	}
-	fscanf (scr,"%d",&best_score);
-	fclose(scr);
 /*	scr = fopen("score.txt","w");
 	if (scr == NULL){
 		return 0;
@@ -87,28 +80,28 @@ int main()
 							case '1':
 								in = fopen("topics/Animals.txt","r");
 								if (in == NULL){
-									printf ("Err: NO data files");
+									printf ("\nErr: NO data files\n");
 									return 1;
 								}
 								break;
 							case '2':
 								in = fopen("topics/Sports.txt","r");
 								if (in == NULL){
-									printf ("Err: NO data files");
+									printf ("\nErr: NO data files\n");
 									return 1;
 								}
 								break;
 							case '3':
 								in = fopen("topics/Professions.txt","r");
 								if (in == NULL){
-									printf ("Err: NO data files");
+									printf ("\nErr: NO data files\n");
 									return 1;
 								}
 								break;
 							case '4':
 								in = fopen("topics/Fruits.txt","r");
 								if (in == NULL){
-									printf ("Err: NO data files");
+									printf ("\nErr: NO data files\n");
 									return 1;
 								}
 								break;		
@@ -291,133 +284,4 @@ int main()
 	}
 	fclose(in);
 	return 0;
-}
-
-int strschk(char word[], int k_index[],char ch,int* num){
-	char chupper = '\0';
-	if (ch >= 'a' && ch <= 'z'){
-		chupper = ch - ('a' - 'A');
-	} else if (ch >= 'A' && ch <= 'Z'){
-		chupper = ch + ('a' - 'A');
-	}
-	int i = 0,j = 0;
-	for (j = 1,i = 0; word[i] != '\0'; ++i){
-		if (word[i] == ch || word[i] == chupper){
-			k_index[j] = i;
-			++j;
-		}
-	}
-	*num = j - 1;
-	k_index[j] = IDX_END;
-	return 0;
-}
-
-void space_print(int n){
-	int i = 0;
-	for (i = 0; i < n; ++i){
-		printf (" ");
-	}
-}
-
-int space_suff(char string[]){
-	return (23 - strlen(string))/2;
-}
-
-void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed){
-	int i = 0;
-//	system("clear");
-	system(CLRS);
-	printf("\nscore: %-6d",score); // 13 chars
-	space_print(STD_SPC);
-	printf("trying: %-2d\n\n\n",tryed); // 10 chars
-	space_print(STD_SPC-3);
-	printf("_____\n"); // 5 chars
-	space_print(STD_SPC-3);
-	printf("|   |\n");
-	space_print(STD_SPC-3);
-	printf("|   %c\n",man[0]);
-	space_print(STD_SPC-3);
-	printf("|  %c%c%c\n",man[2],man[1],man[3]);
-//	space_print(20);
-//	printf("|   |\n");
-	space_print(STD_SPC-3);
-	printf("|  %c %c\n",man[4],man[5]);
-	space_print(STD_SPC - 4);
-	printf("_|_  \n\n");
-	space_print(STD_SPC - 12 + space_suff(word));
-	printf ("%-23s\n",word);
-	printf ("-----------------------------------------------------\n");
-	for (i = 0; i < 26; ++i){
-		printf ("|%c",eng_ch[i]);
-	}
-	printf("|\n\n\n");
-	printf("Enter the char(ENG): ");
-}
-
-char menu(){
-	char ch = 0;
-	system(CLRS);
-	printf("\n\t\t\tMENU\n\n\n"
-		"1.Start game\n"
-		"2.Stats\n\n"
-		"3.Quit\n\n\n"
-		"Enter the num: ");
-	scanf("%c",&ch);
-	return ch;
-}
-
-char topic_select(){
-	char ch = 0;
-	system(CLRS);
-	printf("\n\t\t\tSELECT THE TOPIC\n\n\n"
-		"1.Animals\n"
-		"2.Sports\n"
-		"3.Professions\n"
-		"4.Fruits\n\n"
-//	printf ("5.\n\n");
-		"6.Back \n\n\n"
-		"Enter the num: ");
-	scanf("%c",&ch);
-	return ch;
-}
-
-char stats(int best_score){
-	char ch = 0;
-	system(CLRS);
-	printf("\n\t\t\tSTATS\n\n\n"
-		"Best score: %d\n\n"
-		"1.Back\n\n\n"
-		"Enter the num: ",best_score);
-	scanf("%c",&ch);
-	return ch;
-}
-
-char difficult_select(){
-	char ch = 0;
-	system(CLRS);
-	printf("\n\t\t\tSELECT THE DIFFICULT\n\n\n"
-		"1.Easy\n"
-		"2.Midle\n"
-		"3.Hard\n\n"
-		"4.Back\n\n\n"
-		"Enter the num: ");
-	scanf("%c",&ch);
-	return ch;
-}
-
-int used_simbol_check(char used_simbols[], char ch){
-	int i = 0;
-	char chupper = 0;
-	if (ch >= 'a' && ch <= 'z'){
-		chupper -= 'a' - 'A';
-	}
-	if (ch >= 'A' && ch <= 'Z'){
-		chupper += 'a' - 'A';
-	}
-	for (i = 0; i < 26; ++i){
-		if (used_simbols[i] == ch){
-			return 0;
-		}
-	}
-	return 1;
 }
