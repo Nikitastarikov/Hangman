@@ -21,6 +21,8 @@ build/test.o: scr/test.c
 	gcc -I thirdparty -I scr/headers -c scr/test.c -o build/test.o
 build/ctest.o: scr/ctest.c
 	gcc -I thirdparty -c scr/ctest.c -o build/ctest.o
+test: test
+	test
 build:
 	mkdir build
 .PHONY : clean

@@ -16,7 +16,7 @@
 CTEST(move_suite, move_pawn) // Ход пешки 
 {
 	int i,expected[10],check[10];
-	char word[10];
+	char word[10][10];
 	FILE* file = fopen ("topics/Animals.txt","r");
 	for (i = 0; i < 10; ++i){
 		printf ("%d\n",i);
