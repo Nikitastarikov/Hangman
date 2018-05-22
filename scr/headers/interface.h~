@@ -10,4 +10,8 @@
 #define CLRS "clear" //for Linux
 
 void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed);
+char menu();
+char topic_select();
+//char stats();
+char difficult_select();
 #endif

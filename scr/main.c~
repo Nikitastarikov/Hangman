@@ -381,110 +381,111 @@ int main()
 			//----//
 		    if (z == 10 || game_lose == 1){
 		    	system(CLRS);
-			printf ("\n\n\n\n\n");
-			space_print(STD_SPC - 4);
-			printf ("GAME OVER\n");
-			space_print(STD_SPC - 6);
-			printf ("Score: %-6d\n\n\n\n",score);
-			if (best_score < score){
-				scr = fopen ("score.txt","w");
-				if (scr == NULL){
-					printf ("\nERR: SCORE");
-					return 1;
+				printf ("\n\n\n\n\n");
+				space_print(STD_SPC - 4);
+				printf ("GAME OVER\n");
+				space_print(STD_SPC - 6);
+				printf ("Score: %-6d\n\n\n\n",score);
+				if (best_score < score){
+					scr = fopen ("score.txt","w");
+					if (scr == NULL){
+						printf ("\nERR: SCORE");
+						return 1;
+					}
+					fprintf (scr,"%d",score);
+					best_score = score;	
 				}
-				fprintf (scr,"%d",score);
-				best_score = score;	
-			}
-			sleep(3);
-			break;
-		   }
-		   strcpy(word,words[z]);
-		   /* Delaem slovo nerazgadannim*/
-	           for (i = 0; i <strlen(word); ++i){
-		   campf[i] = '^';
-		   }
-		   campf[i] = '\0';
-		   campf[0] = word[0];
-		   //----//
-		   for (i = 0; i < 26; ++i){
-		   	used_simbols[i] = 0;
-		   }
-		   ++z;
-		   while(1){
-		   	if (tryed == 0){
-		 		game_lose = 1;
+				sleep(3);
 				break;
 			}
-			if (strcmp(word,campf) == 0){
+			strcpy(word,words[z]);
+			/* Delaem slovo nerazgadannim*/
+			for (i = 0; i <strlen(word); ++i){
+				campf[i] = '^';
+			}
+			campf[i] = '\0';
+			campf[0] = word[0];
+			//----//
+			for (i = 0; i < 26; ++i){
+				used_simbols[i] = 0;
+			}
+			++z;
+			while(1){
+				if (tryed == 0){
+					game_lose = 1;
+					break;
+				}
+				if (strcmp(word,campf) == 0){
+					system(CLRS);
+					pole_print(man,eng_ch,campf,score,tryed);
+					sleep(2);
+					break;
+				}
+				pole_print(man,eng_ch,campf,score,tryed); //Resuem pole
+				/*Schitivaem simvol, ishem ego v slove i zapisivaem v campf
+				pribavlaem ochki esli bukva nashlas'*/
+			//	fgets (input,2,stdin);
+				scanf("%s",input);
 				system(CLRS);
-				pole_print(man,eng_ch,campf,score,tryed);
-				sleep(2);
-				break;
-			}
-			pole_print(man,eng_ch,campf,score,tryed); //Resuem pole
-			/*Schitivaem simvol, ishem ego v slove i zapisivaem v campf
-			pribavlaem ochki esli bukva nashlas'*/
-			//fgets (input,2,stdin);
-			scanf("%s",input);
-			system(CLRS);
-			strschk(word,k_index,*ch,&num);
-			if (used_simbol_check(used_simbols,*ch)){
-				if ((*ch >= 'a' && *ch <= 'z') || (*ch >= 'A' && *ch <= 'Z') ){
-					score += num*10;
-					used_simbols[y] = *ch;
-					++y;
-				}
-			}
-			//printf ("\t%d",num);
-			//sleep(2);
-			if (num == 0){
-				--tryed;
-				for (i = 0;i < difficult; ++i){
-					switch(i+k){
-						case 0:
-							man[0] = 'O';
-							break;
-						case 1:
-							man[1] = '|';
-							break;
-						case 2:
-							man[2] = '/';
-							break;
-						case 3:
-							man[3] = '\\';
-							break;
-						case 4:
-							man[4] = '/';
-							break;
-						case 5:
-							man[5] = '\\';
-							break;
+				strschk(word,k_index,*ch,&num);
+				if (used_simbol_check(used_simbols,*ch)){
+					if ((*ch >= 'a' && *ch <= 'z') || (*ch >= 'A' && *ch <= 'Z') ){
+						score += num*10;
+						used_simbols[y] = *ch;
+						++y;
 					}
 				}
-				k += difficult;
-			}
-			if (*ch >= 'a' && *ch <= 'z'){
-				*ch -= 'a' - 'A';
-			}
-			for (i = 0,j = 1; i < strlen(word) && k_index[j] != IDX_END; ++i){
-				if (i == k_index[j]){
-					campf[i] = *ch;
-					++j;
+		//		printf ("\t%d",num);
+		//		sleep(2);
+				if (num == 0){
+					--tryed;
+					for (i = 0;i < difficult; ++i){
+						switch(i+k){
+							case 0:
+								man[0] = 'O';
+								break;
+							case 1:
+								man[1] = '|';
+								break;
+							case 2:
+								man[2] = '/';
+								break;
+							case 3:
+								man[3] = '\\';
+								break;
+							case 4:
+								man[4] = '/';
+								break;
+							case 5:
+								man[5] = '\\';
+								break;
+							
+						}
+					}
+					k += difficult;
 				}
-			}
-			//-----//
-			//printf ("\n%c\n\n",*ch);
-			/*Udalaem bukvu iz angliskih bukov*/
-			for (i = 0; i < 26; ++i){
-				if (eng_ch[i] == *ch){
-					eng_ch[i] = ' ';
+				if (*ch >= 'a' && *ch <= 'z'){
+					*ch -= 'a' - 'A';
 				}
+				for (i = 0,j = 1; i < strlen(word) && k_index[j] != IDX_END; ++i){
+					if (i == k_index[j]){
+						campf[i] = *ch;
+						++j;
+					}
+				}
+				//-----//
+		//		printf ("\n%c\n\n",*ch);
+				/*Udalaem bukvu iz angliskih bukov*/
+				for (i = 0; i < 26; ++i){
+					if (eng_ch[i] == *ch){
+						eng_ch[i] = ' ';
+					}
+				}
+				//-----//
+			//	system("clear");
+				system(CLRS);
 			}
-			//-----//
-			//system("clear");
-			system(CLRS);
 		}
-	}
 		//}
 	fclose(in);
 	}

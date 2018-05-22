@@ -23,7 +23,7 @@ void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int trye
 	space_print(STD_SPC - 4);
 	printf("_|_  \n\n");
 	space_print(STD_SPC - 12 + space_suff(word));
-	//printf ("space = %d", space_suff(word));
+	printf ("space = %d", space_suff(word));
 	//sleep (2);
 	printf ("%-23s\n",word);
 	printf ("-----------------------------------------------------\n");
