@@ -428,6 +428,10 @@ int main()
 			scanf("%s",input);
 			system(CLRS);
 			strschk(word,k_index,*ch,&num);
+			//printf ("ch = %c",*ch);
+			/*for (i = 0; i < 26; ++i) {			
+				printf ("simbol = %d",used_simbols[i]);
+			}*/
 			if (used_simbol_check(used_simbols,*ch)){
 				if ((*ch >= 'a' && *ch <= 'z') || (*ch >= 'A' && *ch <= 'Z') ){
 					score += num*10;
