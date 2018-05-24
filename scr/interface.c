@@ -121,6 +121,7 @@ int Menu_topic (game* menu, bool* sch) {
 				}
 				else if (choice == 4) {
 					sch1 = true;
+					*sch = false;
 				}
 			}		
 		}
