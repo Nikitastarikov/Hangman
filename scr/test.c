@@ -42,46 +42,51 @@ CTEST(check, tabulation) // probel
 // simbol
 CTEST(check, simbol) // check_simbol
 {
-	int i = 0;
-	int expected[11];
-	int check[11];
+	int i = 0,kod;
+	int expected[26];
+	int check[26];
 	char input = 'a';
-	char simbol[11] = {0};
+	char simbol[26] = {0};
 	
-	for (i = 0; i < 11; ++i){
+	for (i = 0; i < 26; ++i){
 		simbol[i] = 0;	
 	}
 	printf ("\n");
-	for (i = 0; i < 10; ++i) {
+	for (i = 0; i < 26; ++i) {
 		check[i] = used_simbol_check(simbol, input);
 		++input;
-		//printf ("check[%d] = %d\n",i,check[i]);
+		expected[i] = 1;
+		ASSERT_EQUAL(expected[i], check[i]);
+	}	
+	kod = 96;
+	for (i = 0; i < 26; ++i){
+		simbol[i] = ++kod;	
 	}
-	expected [0] = 1;
-	expected [1] = 1;
-	expected [2] = 1;
-	expected [3] = 1;
-	expected [4] = 1;
-	expected [5] = 1;
-	expected [6] = 1;
-	expected [7] = 1;
-	expected [8] = 1;
-	expected [9] = 1;
+	input = 'a';
+	for (i = 0; i < 26; ++i) {
+		check[i] = used_simbol_check(simbol, input);
+		++input;
+		expected[i] = 0;
+		ASSERT_EQUAL(expected[i], check[i]);
+	}	
+	
+}
+
+CTEST(difficult, tryed) // difficult
+{	
+	int i,tryed = 0, difficult[3],check[3],expected[3];
+	difficult[0] = 1;
+	difficult[1] = 2;
+	difficult[2] = 3;
+	expected[0] = 0;
+	expected[1] = 0;
+	expected[2] = 0;
+	check[0] = Difficult_output (difficult[0],&tryed);
+	check[1] = Difficult_output (difficult[1],&tryed);
+	check[2] = Difficult_output (difficult[2],&tryed);
 	ASSERT_EQUAL(expected[0], check[0]);
 	ASSERT_EQUAL(expected[1], check[1]);
 	ASSERT_EQUAL(expected[2], check[2]);
-	ASSERT_EQUAL(expected[3], check[3]);
-	ASSERT_EQUAL(expected[4], check[4]);
-	ASSERT_EQUAL(expected[5], check[5]);
-	ASSERT_EQUAL(expected[6], check[6]);
-	ASSERT_EQUAL(expected[7], check[7]);
-	ASSERT_EQUAL(expected[8], check[8]);
-	ASSERT_EQUAL(expected[9], check[9]);
-
 }
 
-/*CTEST(point, characteristics) // Menu
-{
-		
 
-}*/
