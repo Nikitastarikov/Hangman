@@ -1,0 +1,6 @@
+*.o
+*~
+scr/*~
+scr/headers/*~
+thirdparty/*~
+topics/*~
