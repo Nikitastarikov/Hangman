@@ -30,7 +30,7 @@ int Menu_stats (game* menu,int best_score) {
 		"Best score: %d\n\n",best_score);
 		//menu_ch[0] = stats(best_score);
 		//printw ("\tSELECT THE DIFFICULT\n");
-		for (x = 0; x < 2; x++) {
+		for (x = 0; x < 1; x++) {
 			if ( x == choice ) {		
 				addch('>'); //Выводим указатель
 				printw("%s", items3[x]);
@@ -50,7 +50,7 @@ int Menu_stats (game* menu,int best_score) {
 					choice--; 
 				break;
 			case KEY_DOWN:
-				if ( choice != 1 )
+				if ( choice != 0 )
        					choice++;
 				break;
 			case 10	:{

@@ -119,7 +119,7 @@ int main()
 	char used_simbols[26] = {0};
 	int game_lose = 0;
 	int k_index[100] = {0}; // Massive dlya indexov naidenih bukov
-	char input[3] = {0}, *ch = 0; // Vvodimaja bukva
+	char input[100] = {0}, *ch = 0; // Vvodimaja bukva
 	//char menu_ch[3] = {0};
 	char man[6] = {' ',' ',' ',' ',' ',' '}; // Massive dlya chelovechka
 	char eng_ch[27]; // Massive dlya Angliskih bukov
@@ -220,7 +220,7 @@ int main()
 			/*Schitivaem simvol, ishem ego v slove i zapisivaem v campf
 			pribavlaem ochki esli bukva nashlas'*/
 			//fgets (input,2,stdin);
-			scanf("%s",input);
+			scanf("%98s",input);
 			system(CLRS);
 			strschk(word,k_index,*ch,&num);
 			//printf ("ch = %c",*ch);
