@@ -10,6 +10,13 @@
 //#define CLRS "CLS" //for Windows
 #define CLRS "clear" //for Linux
 
+typedef struct {
+	int difficult;
+	int start_game;
+	int topic;
+	int exit;
+}game; 
+
 
 int strschk(char word[], int k_index[],char ch,int* num);
 void space_print(int n);

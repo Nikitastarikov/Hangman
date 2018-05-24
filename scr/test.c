@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-CTEST(expected,check) // probel
+CTEST(check, tabulation) // probel
 {
 	int i,expected[10],check[10];
 	char word[10][10];
@@ -40,7 +40,7 @@ CTEST(expected,check) // probel
 }
 
 // simbol
-CTEST(input, output) // check_simbol
+CTEST(check, simbol) // check_simbol
 {
 	int i = 0;
 	int expected[11];
@@ -79,3 +79,9 @@ CTEST(input, output) // check_simbol
 	ASSERT_EQUAL(expected[9], check[9]);
 
 }
+
+/*CTEST(point, characteristics) // Menu
+{
+		
+
+}*/

@@ -1,4 +1,56 @@
-#include "headers/string_funcs.h"
+#include "headers/string_funcs.h" 
+
+
+
+int Difficult_output (int difficult, int *tryed) {
+	if (difficult >= 1 || difficult <= 3) {
+		if (difficult == 1) { 
+			*tryed = 6;
+		}
+		else if (difficult == 2) {
+			*tryed = 3;
+		}
+		else if (difficult == 3) {
+			*tryed = 2;
+		}
+	}
+	else {
+		return -1;
+	}
+	return 0;
+}
+
+int Topic_output (int topic, FILE ** in) {
+		if (topic == 1) {
+			*in = fopen("topics/Animals.txt","r");
+			if (*in == NULL){
+				printf ("\nErr: NO data files\n");
+				return -1;
+			}	
+		}
+		else if (topic == 2) {
+			*in = fopen("topics/Sports.txt","r");
+			if (*in == NULL){
+				printf ("\nErr: NO data files\n");
+				return -1;
+			}	
+		}
+		else if (topic == 3) {
+			*in = fopen("topics/Professions.txt","r");
+			if (*in == NULL){
+				printf ("\nErr: NO data files\n");
+				return -1;
+			}	
+		}
+		else if (topic == 4) {
+			*in = fopen("topics/Fruits.txt","r");
+			if (*in == NULL){
+				printf ("\nErr: NO data files\n");
+				return -1;
+			}	
+		}
+	return 0;
+}
 
 int strschk(char word[], int k_index[],char ch,int* num){
 	char chupper = '\0';
