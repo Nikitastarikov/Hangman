@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-CTEST(check, tabulation) // probel
+CTEST (check, tabulation) // probel
 {
 	int i,expected[10],check[10];
 	char word[10][10];
@@ -40,7 +40,7 @@ CTEST(check, tabulation) // probel
 }
 
 // simbol
-CTEST(check, simbol) // check_simbol
+CTEST (check, simbol) // check_simbol
 {
 	int i = 0,kod;
 	int expected[26];
@@ -72,7 +72,7 @@ CTEST(check, simbol) // check_simbol
 	
 }
 
-CTEST(difficult, tryed) // difficult
+CTEST (difficult, tryed) // difficult
 {	
 	int i,tryed = 0, difficult[3],check[3],expected[3];
 	difficult[0] = 1;
@@ -89,4 +89,16 @@ CTEST(difficult, tryed) // difficult
 	ASSERT_EQUAL(expected[2], check[2]);
 }
 
+CTEST (topic, across) // data stream
+{
+	int i,check[4],expected[4],topic[4];
+	FILE* file;
+	for (i = 0; i < 4; ++i) {
+		topic[i] = i + 1;
+		check[i] = Topic_output (topic[i], &file);
+		expected[i] = 0;
+		ASSERT_EQUAL(expected[i], check[i]);
+	}
+	fclose (file);
+}
 
