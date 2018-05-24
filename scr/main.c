@@ -6,7 +6,6 @@
 #include "headers/string_funcs.h"
 #define IDX_END 1000000
 #define STD_SPC 29
-//#define CLRS "CLS" //for Windows
 #define CLRS "clear" //for Linux
 const char items[4][6] = {
 	"Start", 
@@ -17,14 +16,12 @@ const char items[4][6] = {
 
 game* Menu (game* menu,int best_score){
 	initscr();
-	//printw ("\tWelcome to the game!))))\n");
 	int choice = 0; //Выбор пользователя
 	curs_set(0); //"Убиваем" курсор
         //Включаем режим удобной работы с функциональными клавишами, другими словами KEY_UP и KEY_DOWN без этого не работали бы
 	keypad(stdscr, true); 
 	int x;
 	bool sch = false;
-	//getch();
 	
 	menu->start_game = 0;
 	menu->exit = 0;
@@ -48,7 +45,6 @@ game* Menu (game* menu,int best_score){
 				printw("\n");
            		}
         	}
-		//printw ("%d",choice);
         	//Получаем нажатие пользователя
 			
 		switch ( getch() ) {
@@ -100,27 +96,20 @@ int main()
 		if (scr == NULL){
 			return 1;
 		}
-//		fprintf(scr,"%d",0);
 		best_score = 0;
 		fclose(scr);
 	} else {
 		fscanf (scr,"%d",&best_score);
 		fclose(scr);
 	}
-/*	scr = fopen("score.txt","w");
-	if (scr == NULL){
-		return 0;
-	} */
 	int tryed = 0,i = 0,j = 0,k = 0,z = 0,y = 0; // Popitki, schetchiki
 	unsigned int score = 0; // Ochki
 	char words[10][50] = {{0}};
 	int difficult = 3, num = 0;
-//	char readed_word[50] = {0};
 	char used_simbols[26] = {0};
 	int game_lose = 0;
 	int k_index[100] = {0}; // Massive dlya indexov naidenih bukov
 	char input[100] = {0}, *ch = 0; // Vvodimaja bukva
-	//char menu_ch[3] = {0};
 	char man[6] = {' ',' ',' ',' ',' ',' '}; // Massive dlya chelovechka
 	char eng_ch[27]; // Massive dlya Angliskih bukov
 	char word[23] = "COFFE"; //ugadivaemoe slovo
@@ -130,7 +119,6 @@ int main()
 	menu = (game*) malloc (sizeof (game));
 	menu->exit = 0;
 	while(menu->exit != 1){
-		//menu->exit = 0;
 		menu->start_game = 0;
 		k = 0;
 		z = 0;
@@ -162,18 +150,13 @@ int main()
 		}
 		for (i = 0; i < 10; ++i){
 			printf ("%d\n",i);
-			fscanf (in,"%s",words[i]);
-			//printf ("%s",words[i]);
-			
+			fscanf (in,"%s",words[i]);		
 		}
 		while(1){
-
-			/*Vnosim Angliskie bukvovi*/
 			for (i = 0;i < 26; ++i){
 				eng_ch[i] = 'A' + i;
 			}
 			eng_ch[26] = '\0';
-			//----//
 		    if (z == 10 || game_lose == 1){
 		    	system(CLRS);
 			printf ("\n\n\n\n\n");
@@ -219,14 +202,9 @@ int main()
 			pole_print(man,eng_ch,campf,score,tryed); //Resuem pole
 			/*Schitivaem simvol, ishem ego v slove i zapisivaem v campf
 			pribavlaem ochki esli bukva nashlas'*/
-			//fgets (input,2,stdin);
 			scanf("%98s",input);
 			system(CLRS);
 			strschk(word,k_index,*ch,&num);
-			//printf ("ch = %c",*ch);
-			/*for (i = 0; i < 26; ++i) {			
-				printf ("simbol = %d",used_simbols[i]);
-			}*/
 			if (used_simbol_check(used_simbols,*ch)){
 				if ((*ch >= 'a' && *ch <= 'z') || (*ch >= 'A' && *ch <= 'Z') ){
 					score += num*10;
@@ -234,8 +212,6 @@ int main()
 					++y;
 				}
 			}
-			//printf ("\t%d",num);
-			//sleep(2);
 			if (num == 0){
 				--tryed;
 				for (i = 0;i < difficult; ++i){
@@ -272,7 +248,6 @@ int main()
 				}
 			}
 			//-----//
-			//printf ("\n%c\n\n",*ch);
 			/*Udalaem bukvu iz angliskih bukov*/
 			for (i = 0; i < 26; ++i){
 				if (eng_ch[i] == *ch){

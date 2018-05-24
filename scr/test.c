@@ -9,9 +9,7 @@ CTEST (check, tabulation) // probel
 	char word[10][10];
 	FILE* file = fopen ("topics/Animals.txt","r");
 	for (i = 0; i < 10; ++i){
-		//printf ("%d\n",i);
-		fscanf (file,"%s",word[i]);
-		//printf ("%s",word[i]);	
+		fscanf (file,"%s",word[i]);	
 	}
 	fclose (file);
 	for (i = 0; i < 10; ++i) {

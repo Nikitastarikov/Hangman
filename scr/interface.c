@@ -28,8 +28,6 @@ int Menu_stats (game* menu,int best_score) {
 		clear();
 		printw ("\n\t\t\tSTATS\n\n\n"
 		"Best score: %d\n\n",best_score);
-		//menu_ch[0] = stats(best_score);
-		//printw ("\tSELECT THE DIFFICULT\n");
 		for (x = 0; x < 1; x++) {
 			if ( x == choice ) {		
 				addch('>'); //Выводим указатель
@@ -71,7 +69,6 @@ int Menu_topic (game* menu, bool* sch) {
 	bool sch1 = false;
 	while (!sch1) {
 		clear();
-		//printw ("%d\n",best_score);
 		printw ("\tSELECT THE TOPIC\n");
 		for (x = 0; x < 5; x++) {
 			if ( x == choice ) {//Если текущий элемент совпадает с выбором пользователя
@@ -135,7 +132,6 @@ int Menu_difficult (game* menu, bool* sch1) {
 	bool sch2 = false;
 	while (!sch2) {
 		clear();
-		//printw ("topic = %d\n",menu->topic);
 		printw ("\tSELECT THE DIFFICULT\n");
 		for (x = 0; x < 4; x++) {
 			if ( x == choice ) {			
@@ -188,7 +184,6 @@ int Menu_difficult (game* menu, bool* sch1) {
 
 void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int tryed){
 	int i = 0;
-//	system("clear");
 	system(CLRS);
 	printf("\nscore: %-6d",score); // 13 chars
 	space_print(STD_SPC);
@@ -201,8 +196,6 @@ void pole_print(char man[],char eng_ch[],char word[],unsigned int score,int trye
 	printf("|   %c\n",man[0]);
 	space_print(STD_SPC-3);
 	printf("|  %c%c%c\n",man[2],man[1],man[3]);
-//	space_print(20);
-//	printf("|   |\n");
 	space_print(STD_SPC-3);
 	printf("|  %c %c\n",man[4],man[5]);
 	space_print(STD_SPC - 4);
